@@ -85,7 +85,6 @@ public class Time{
         return this.hours + " : "+ this.mins + " : " + this.secs;
    }
 //test
-    //test
 //    @Override
 //    public boolean equals(Time time) {
 //      if(time.compareTo(time.hours))

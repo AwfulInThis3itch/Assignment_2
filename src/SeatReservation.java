@@ -7,4 +7,13 @@ public abstract class SeatReservation {
     protected  boolean complementary;
 
 
+    public char getRow() {
+        return row;
+    }
+
+    public int getColumn() {
+        return column;
+    }
+
+
 }

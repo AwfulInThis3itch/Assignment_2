@@ -134,38 +134,43 @@ public class Time implements Comparable<Time>{
 
     @Override
     public int compareTo(@NotNull Time o) {
-        String date = convert12To24Hr();
-        System.out.println(date);
 
-       if(o.convert12To24Hr().contains("A") || o.convert12To24Hr().contains("P")){
+
+       if(o.convert12To24Hr().contains("A")){
            //AM comes first
            if(o.hours == this.hours && o.mins == this.mins && o.secs == this.secs){
                System.out.println("The time is the Same in AM");
+               return 0; // test if all the same time
                //test to see if both object o and time class have the same time
-           }else if (this.hours > o.hours){
-               System.out.println(this.convert12To24Hr() + " is greater than " + o.convert12To24Hr());
+           }else if (o.hours < this.hours){
+               System.out.println(o.convert12To24Hr() + " is earlier than " + this.convert12To24Hr());
+               return 1;
+           }else if (o.hours > this.hours){
+               System.out.println(this.convert12To24Hr() + " is earlier than " + o.convert12To24Hr());
+               return -1;
+           }
+           else{
+               return -1;
+           }
+       }
+       else if(o.convert12To24Hr().contains("P")){
+
+           if(o.hours == this.hours && o.mins == this.mins && o.secs == this.secs){
+               System.out.println("The Time is the same in PM");
+               //test to see if both are pm
+           }else if (o.hours > this.hours ){
+               System.out.println(this.convert12To24Hr() + " is earlier in the day than " + o.convert12To24Hr());
+               return -1;
+           }else if(o.hours < this.hours){
+               System.out.println(o.convert12To24Hr() + " is earlier in the day than " + this.convert12To24Hr());
                return 1;
            }
 
+           System.out.println("This is PM");
+           System.out.println(o.convert12To24Hr());
 
-           return 1;
-
+           return -1;
        }
-//       else if(o.convert12To24Hr().contains("P")){
-//
-//           if(o.hours == this.hours && o.mins == this.mins && o.secs == this.secs){
-//               System.out.println("The Time is the same in PM");
-//               //test to see if both are pm
-//           }else if (this.hours > o.hours){
-//               System.out.println(this.convert12To24Hr() + " is greater than " + o.convert12To24Hr() );
-//               return 1;
-//           }
-//
-//           System.out.println("This is PM");
-//           System.out.println(o.convert12To24Hr());
-//
-//           return -1;
-//       }
         return 0;
     }
 }

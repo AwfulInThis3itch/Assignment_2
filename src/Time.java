@@ -1,7 +1,12 @@
+import org.jetbrains.annotations.NotNull;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by User on 5/1/2017.
  */
-public class Time{
+public class Time implements Comparable<Time>{
 
     private int hours;
     private int mins;
@@ -80,13 +85,87 @@ public class Time{
         this.secs = secs;
     }
 
+    private String convertToString(){ //Helper Method
+        String TimeIn24Format;
+        TimeIn24Format = ( Integer.toString(this.hours)+ ":" +Integer.toString(this.mins)+ ":" + Integer.toString(this.secs));
+        //System.out.println(TimeIn24Format + " Testing convertToString Method");
+        return TimeIn24Format;
+    }
+
+    private String convert12To24Hr(){ //Helper Method
+        String test = convertToString();
+
+        Date date = null;
+
+        try {
+            date =  new SimpleDateFormat("hh:mm:ss").parse(test);
+        }
+        catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
+        SimpleDateFormat date24Format= new SimpleDateFormat("HH:mm:ss a");
+        String dateConversion = date24Format.format(date);
+        return dateConversion;
+    }
+
    public String toString (){
 
-        return this.hours + " : "+ this.mins + " : " + this.secs;
+       return convert12To24Hr();
+
    }
 
-//    @Override
-//    public boolean equals(Time time) {
-//      if(time.compareTo(time.hours))
-//    }
+    public boolean equals(Time otherTime) {
+
+       if(!(otherTime instanceof Time)){
+           System.out.println(otherTime + " is not a instance of Time");  //just a check to see if it is an instance of time
+          return false;
+       }else{
+           //should check each value of obj and compare it to this Time values
+           if(otherTime.hours == this.hours && otherTime.mins == this.mins && otherTime.secs == this.secs) {
+               System.out.println("Same time of the two classes");
+               return true;
+           }
+       }
+        System.out.println("Not the same time");
+        return false;
+    }
+
+
+
+    @Override
+    public int compareTo(@NotNull Time o) {
+        String date = convert12To24Hr();
+        System.out.println(date);
+
+       if(o.convert12To24Hr().contains("A") || o.convert12To24Hr().contains("P")){
+           //AM comes first
+           if(o.hours == this.hours && o.mins == this.mins && o.secs == this.secs){
+               System.out.println("The time is the Same in AM");
+               //test to see if both object o and time class have the same time
+           }else if (this.hours > o.hours){
+               System.out.println(this.convert12To24Hr() + " is greater than " + o.convert12To24Hr());
+               return 1;
+           }
+
+
+           return 1;
+
+       }
+//       else if(o.convert12To24Hr().contains("P")){
+//
+//           if(o.hours == this.hours && o.mins == this.mins && o.secs == this.secs){
+//               System.out.println("The Time is the same in PM");
+//               //test to see if both are pm
+//           }else if (this.hours > o.hours){
+//               System.out.println(this.convert12To24Hr() + " is greater than " + o.convert12To24Hr() );
+//               return 1;
+//           }
+//
+//           System.out.println("This is PM");
+//           System.out.println(o.convert12To24Hr());
+//
+//           return -1;
+//       }
+        return 0;
+    }
 }

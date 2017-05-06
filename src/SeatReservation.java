@@ -1,7 +1,7 @@
 /**
  * Created by User on 5/5/2017.
  */
-public abstract class SeatReservation {
+ abstract class SeatReservation {
     private char row;
     private  int column;
     protected  boolean complementary;
@@ -15,5 +15,14 @@ public abstract class SeatReservation {
         return column;
     }
 
+    public void setComplementary(boolean complementary) {
+        this.complementary = complementary;
+    }
 
+   public abstract float getTicketPrice();
+
+    public SeatReservation(char row, int column) {
+        this.row = row;
+        this.column = column;
+    }
 }

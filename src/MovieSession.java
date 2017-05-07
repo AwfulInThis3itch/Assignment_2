@@ -1,5 +1,6 @@
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +24,8 @@ public class MovieSession implements Comparable {
 
     public static int convertRowToIndex(char rowLetter){
         //get row letter then convert that to an index of that in the array
-        int convertedRowLetter = (int)rowLetter;
+        int convertedRowLetter = ('A' + rowLetter);
+        System.out.println(convertedRowLetter);
         //add the convertedRowLetter to the arrays
 
         return convertedRowLetter;
@@ -68,6 +70,9 @@ public class MovieSession implements Comparable {
 
 
     public static void main(String[] args) {
+        ArrayList<MovieSession> Movie = new ArrayList<MovieSession>();
+        convertRowToIndex('A');
         convertRowToIndex('C');
+
     }
 }

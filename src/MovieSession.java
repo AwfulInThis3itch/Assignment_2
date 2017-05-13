@@ -23,17 +23,11 @@ public class MovieSession implements Comparable {
     }
 
     public static int convertRowToIndex(char rowLetter){
-        //get row letter then convert that to an index of that in the array
-        int convertedRowLetter = ('A' + rowLetter);
-        System.out.println(convertedRowLetter);
-        //add the convertedRowLetter to the arrays
-
-        return convertedRowLetter;
+        return (int)rowLetter;
     }
 
     public static char convertIndexToRow(int rowIndex){
-        char n = 'd';
-        return n;
+        return (char)rowIndex;
     }
 
     public String getMovieName() {
@@ -48,11 +42,15 @@ public class MovieSession implements Comparable {
         return sessionTime;
     }
 
-    public static boolean getSeat(char row, int col) {
+    public SeatReservation getSeat(char row, int col) {
 
+        return ;
+    }
 
+    public boolean isSeatAvaukabke(char row, int col){
         return true;
     }
+
 
     public boolean applyBooking(List<SeatReservation> reservationList){
         return true;
@@ -71,8 +69,7 @@ public class MovieSession implements Comparable {
 
     public static void main(String[] args) {
         ArrayList<MovieSession> Movie = new ArrayList<MovieSession>();
-        convertRowToIndex('A');
-        convertRowToIndex('C');
+
 
     }
 }

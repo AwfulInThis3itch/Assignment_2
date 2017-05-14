@@ -1,6 +1,7 @@
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -23,7 +24,13 @@ public class MovieSession implements Comparable {
     }
 
     public static int convertRowToIndex(char rowLetter){
-        return (int)rowLetter;
+        int i = (int)rowLetter;
+     if(i <= 64 || i >= 91){
+         System.out.println("Try again not the right index format");
+     }else{
+         i = i - 'A';   // Converts A to 0 ,B to 1, C to 2 etc
+     }
+        return i;
     }
 
     public static char convertIndexToRow(int rowIndex){
@@ -44,11 +51,11 @@ public class MovieSession implements Comparable {
 
     public SeatReservation getSeat(char row, int col) {
 
-        return ;
+        return  ;
     }
 
-    public boolean isSeatAvaukabke(char row, int col){
-        return true;
+    public boolean isSeatAvailable(char row, int col){
+
     }
 
 
@@ -65,11 +72,22 @@ public class MovieSession implements Comparable {
         return 0;
     }
 
-
+    @Override
+    public String toString() {
+        return "MovieSession{" +
+                "movieName='" + movieName + '\'' +
+                ", rating=" + rating +
+                ", sessionTime=" + sessionTime +
+                ", sessionSeats=" + Arrays.toString(sessionSeats) +
+                '}';
+    }
 
     public static void main(String[] args) {
         ArrayList<MovieSession> Movie = new ArrayList<MovieSession>();
+        Time time = new Time(2,4,56);
+        Time time2 = new Time (14,44,2);
 
-
+        time.compareTo(time2); //test time class
+        convertRowToIndex('A');
     }
 }
